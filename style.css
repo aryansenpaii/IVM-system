@@ -1,21 +1,117 @@
-
+/* Importing Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");
-*{
+
+/* Styling common to all elements */
+* {
   margin: 0;
   padding: 0;
-  outline: none;
-  border: none;
-  text-decoration: none;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
 }
-body{
-  background: #dfe9f5;
-}
-.container{
+
+/* Body Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
 }
-nav{
+
+/* Container styling */
+.container {
+  max-width: 600px;
+  height: 400px;
+  background-color: #ddf1a6;
+  padding: 35px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(11, 9, 9, 0.1);
+  text-align: center;
+  margin: auto; /* Center align the container */
+}
+
+/* Heading styling for "Welcome to GEU Inventory" */
+h1 {
+  color: #3366cc; 
+  margin-bottom: 30px; 
+  font-size: 38px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+/* Heading styling for "Choose your access level" */
+h2 {
+  color: #ff4500; 
+  margin-bottom: 20px;
+}
+
+/* Button styling */
+.loginChoice {
+  display: block;
+  width: 100%;
+  padding: 16px; /* Increase the padding to increase the button size */
+  margin-top: 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.loginChoice:hover {
+  background-color: #45a049;
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px; 
+}
+
+/* Input styling */
+input {
+  width: 100%;
+  padding: 10px; /* Increase the padding to increase the size of text boxes */
+  margin-bottom: 15px;
+}
+
+/* Button styling */
+.loginButton {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 15px; /* Increase the padding to increase the size of the button */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/*styling for when u place your mouse pointer over the button*/
+.loginButton:hover {
+  background-color: #2c8b2f;
+}
+
+/* Back link styling */
+a {
+  color: #04046c;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+a:hover {
+  color: #fcf6f9;
+}
+
+/* Navigation styling */
+nav {
   position: relative;
   top: 0;
   bottom: 0;
@@ -26,25 +122,30 @@ nav{
   overflow: hidden;
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
 }
-.logo{
+
+/* Logo styling */
+.logo {
   text-align: center;
   display: flex;
   margin: 10px 0 0 10px;
 }
-.logo img{
+
+.logo img {
   width: 45px;
   height: 45px;
   border-radius: 50%;
 }
-.logo span{
+
+.logo span {
   font-weight: bold;
   padding-left: 15px;
   font-size: 18px;
   text-transform: uppercase;
 }
+
 a{
   position: relative;
-  color: rgb(85, 83, 83);
+  color: rgb(164, 18, 86);
   font-size: 14px;
   display: table;
   width: 280px;
