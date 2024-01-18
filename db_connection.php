@@ -2,7 +2,7 @@
 $host = "localhost";  // e.g., "localhost"
 $username = "root";
 $password = "";
-$database = "logininfo";
+$database = "ivm-data";
 
 $conn = mysqli_connect($host, $username, $password, $database);
 

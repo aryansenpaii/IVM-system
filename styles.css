@@ -88,17 +88,20 @@ a:hover{
   cursor: pointer;
 }
 .main-skills{
-  display: flex;
+  display: block;
   margin-top: 20px;
 }
 .main-skills .card{
-  width: 25%;
-  margin: 10px;
+  /* CONTAIN-INTRINSIC-BLOCK-SIZE: auto none; */
+  width:auto;
+  margin: 36px;
+  /* margin-bottom: 50px; */
   background: #fff;
   text-align: center;
   border-radius: 20px;
-  padding: 10px;
+  padding: 15px;
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+  height: 90%;
 }
 .main-skills .card h3{
   margin: 10px;
@@ -189,4 +192,13 @@ a:hover{
 }
 .js{
   color: rgb(28, 98, 179);
+}
+.card {
+    align-items:center;
+    padding: auto;
+    margin:auto;
+}
+#welcomeText{
+    font-size: 90px;
+    align-self: center;
 }

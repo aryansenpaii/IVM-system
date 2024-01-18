@@ -41,27 +41,27 @@ $userRole = $_SESSION['user_role'];
                         </a></li>
 
                     <?php if ($userRole === 'admin'): ?>
-                        <li><a href="">
-                                <i class="fas fa-wallet"></i>
+                        <li><a href="addProduct.php">
+                        <i class="fas fa-plus-square"></i>
                                 <span class="nav-item">Add Product</span>
                             </a></li>
-                        <li><a href="">
-                                <i class="fas fa-chart-bar"></i>
-                                <span class="nav-item">Remove Product</span>
+                        <li><a href="manage.php">
+                        <i class="fas fa-tasks"></i>
+                                <span class="nav-item">Manage</span>
                             </a></li>
-                        <li><a href="">
-                                <i class="fas fa-tasks"></i>
+                        <li><a href="discounts.php">
+                        <i class="fas fa-user-tag"></i>
                                 <span class="nav-item">Discounts</span>
                             </a></li>
 
                     <?php elseif ($userRole === 'sales'): ?>
 
-                        <li><a href="">
-                                <i class="fas fa-wallet"></i>
+                        <li><a href="scanBill.php">
+                        <i class="fas fa-barcode"></i>
                                 <span class="nav-item">Scan & Bill</span>
                             </a></li>
-                        <li><a href="">
-                                <i class="fas fa-chart-bar"></i>
+                        <li><a href="billHistory.php">
+                        <i class="fas fa-history"></i>
                                 <span class="nav-item">Billing History</span>
                             </a></li>
                     <?php else: ?>
@@ -82,28 +82,11 @@ $userRole = $_SESSION['user_role'];
                 </div>
                 <div class="main-skills">
                     <div class="card">
+                        
                         <i class="fas fa-laptop-code"></i>
-                        <h3>Web developemt</h3>
-                        <p>Join Over 1 million Students.</p>
-                        <button>Get Started</button>
-                    </div>
-                    <div class="card">
-                        <i class="fab fa-wordpress"></i>
-                        <h3>WordPress</h3>
-                        <p>Join Over 3 million Students.</p>
-                        <button>Get Started</button>
-                    </div>
-                    <div class="card">
-                        <i class="fas fa-palette"></i>
-                        <h3>graphic design</h3>
-                        <p>Join Over 2 million Students.</p>
-                        <button>Get Started</button>
-                    </div>
-                    <div class="card">
-                        <i class="fab fa-app-store-ios"></i>
-                        <h3>IOS dev</h3>
-                        <p>Join Over 1 million Students.</p>
-                        <button>Get Started</button>
+                        <h1 id="welcomeText">Welcome to GEU Shopping Mart</h1>
+                    
+                        
                     </div>
                 </div>
             </section>
