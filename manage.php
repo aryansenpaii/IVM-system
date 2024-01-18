@@ -21,13 +21,43 @@ $userRole = $_SESSION['user_role'];
         <!-- Font Awesome Cdn Link -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
         <link rel="stylesheet" type="text/css" href="styles.css">
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 80%;
+                margin: 20px auto;
+            }
+
+            th,
+            td {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+            .edit-btn {
+                background-color: #4caf50;
+                color: white;
+                padding: 6px 12px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+        
+        </style>
     </head>
 
     <body>
 
 
 
-    
+
         <div class="container">
             <nav>
                 <ul>
@@ -46,26 +76,26 @@ $userRole = $_SESSION['user_role'];
 
                     <?php if ($userRole === 'admin'): ?>
                         <li><a href="addProduct.php">
-                        <i class="fas fa-plus-square"></i>
+                                <i class="fas fa-plus-square"></i>
                                 <span class="nav-item">Add Product</span>
                             </a></li>
                         <li><a href="manage.php">
-                        <i class="fas fa-tasks"></i>
+                                <i class="fas fa-tasks"></i>
                                 <span class="nav-item">Manage</span>
                             </a></li>
                         <li><a href="discounts.php">
-                        <i class="fas fa-user-tag"></i>
+                                <i class="fas fa-user-tag"></i>
                                 <span class="nav-item">Discounts</span>
                             </a></li>
 
                     <?php elseif ($userRole === 'sales'): ?>
 
                         <li><a href="scanBill.php">
-                        <i class="fas fa-barcode"></i>
+                                <i class="fas fa-barcode"></i>
                                 <span class="nav-item">Scan & Bill</span>
                             </a></li>
                         <li><a href="billHistory.php">
-                        <i class="fas fa-history"></i>
+                                <i class="fas fa-history"></i>
                                 <span class="nav-item">Billing History</span>
                             </a></li>
                     <?php else: ?>
@@ -81,73 +111,58 @@ $userRole = $_SESSION['user_role'];
 
             <section class="main">
                 <div class="main-top">
-                    <h1>Add Product</h1>
+                    <h1>Manage</h1>
                     <i class="fas fa-user-cog"></i>
                 </div>
                 <div class="main-skills">
-                <div class="card">
+                    <div class="card">
 
 
-    <form action="addProduct.php" method="post">
-        <label for="product_id">Product ID:</label>
-        <input type="text" name="product_id" id="product_id" placeholder="Product ID">
 
-        <label for="product_name">Product Name:</label>
-        <input type="text" name="product_name" id="product_name" placeholder="Product Name">
+                        <?php
+                        include('db_connection.php');
+                        $sql = "SELECT id, product_name, category, price, manufacturer, quantity, expiry FROM products";
+                        $result = $conn->query($sql);
 
-        <label for="category">Category:</label>
-        <input type="text" name="category" id="category" placeholder="Category">
+                        if ($result->num_rows > 0) {
+                            // Display table header
+                            echo "<table>
+                <tr>
+                    <th>ID</th>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Manufacturer</th>
+                    <th>Quantity</th>
+                    <th>Expiry</th>
+                    <th>Edit</th>
+                </tr>";
 
-        <label for="price">Price:</label>
-        <input type="number" name="price" id="price" placeholder="Price">
+                            // Display data from the database
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>
+                    <td>" . $row["id"] . "</td>
+                    <td>" . $row["product_name"] . "</td>
+                    <td>" . $row["category"] . "</td>
+                    <td>" . $row["price"] . "</td>
+                    <td>" . $row["manufacturer"] . "</td>
+                    <td>" . $row["quantity"] . "</td>
+                    <td>" . $row["expiry"] . "</td>
+                    <td><a href='editProduct.php?id=" . $row["id"] . "' class='edit-btn'>Edit</a></td>
+                </tr>";
+                            }
 
-        <label for="manufacturer">Manufacturer:</label>
-        <input type="text" name="manufacturer" id="manufacturer" placeholder="Manufacturer">
+                            echo "</table>";
+                        } else {
+                            echo "No products found.";
+                        }
 
-        <label for="quantity">Quantity:</label>
-        <input type="number" name="quantity" id="quantity" placeholder="Quantity">
+                        // Close database connection
+                        $conn->close();
+                        ?>
 
-        <label for="expiry">Expiry:</label>
-        <input type="date" name="expiry" id="expiry" placeholder="Expiry">
 
-        <button type="submit">Add item</button>
-    </form>
-    <?php 
-            include('db_connection.php');
-           
-// Check if the form has been submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
-    $product_id = $_POST["product_id"];
-    $product_name = $_POST["product_name"];
-    $category = $_POST["category"];
-    $price = $_POST["price"];
-    $manufacturer = $_POST["manufacturer"];
-    $quantity = $_POST["quantity"];
-    $expiry = $_POST["expiry"];
-
-    // Validate and sanitize input data if needed
-
-    
-    // Insert data into the database
-    $sql = "INSERT INTO products (id, product_name, category, price, manufacturer, quantity, expiry)
-            VALUES ('$product_id', '$product_name', '$category', $price, '$manufacturer', $quantity , '$expiry')";
-
-    if ($conn->query($sql) === TRUE) {
-        // Display success message
-        echo "Product added successfully!";
-    } else {
-        // Display error message
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-    // Close database connection
-    $conn->close();
-}
-?>
-   
-        
-</div>
+                    </div>
 
                 </div>
             </section>

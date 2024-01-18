@@ -27,15 +27,15 @@ $userRole = $_SESSION['user_role'];
         <div class="container">
             <nav>
                 <ul>
-                    <li><a href="#" class="logo">
+                    <li><a href="dashboard.php" class="logo">
                             <img src="/logo.jpg" alt="">
                             <span class="nav-item">DashBoard</span>
                         </a></li>
-                    <li><a href="#">
+                    <li><a href="dashboard.php">
                             <i class="fas fa-home"></i>
                             <span class="nav-item">Home</span>
                         </a></li>
-                    <li><a href="">
+                    <li><a href="profile.php">
                             <i class="fas fa-user"></i>
                             <span class="nav-item">Profile</span>
                         </a></li>
