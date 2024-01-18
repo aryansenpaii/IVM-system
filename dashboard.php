@@ -1,12 +1,10 @@
 <?php
 session_start();
-
-// Check if the user is logged in and has a valid role
-if (!isset($_SESSION['user_role'])) {
-    // Redirect to login page if not logged in
-    header("Location: index.php");
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || !isset($_SESSION['user_role'])) {
+    header("Location: index.php"); // Redirect to the login page
     exit();
 }
+
 
 // Dynamically load content based on user role
 $userRole = $_SESSION['user_role'];
@@ -69,7 +67,7 @@ $userRole = $_SESSION['user_role'];
                         <p>Invalid user role.</p>
                     <?php endif; ?>
 
-                    <li><a href="" class="logout">
+                    <li><a href="logout.php" class="logout">
                             <i class="fas fa-sign-out-alt"></i>
                             <span class="nav-item">Log out</span>
                         </a></li>

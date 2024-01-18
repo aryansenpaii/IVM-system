@@ -1,5 +1,4 @@
-
-<?php 
+<?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
@@ -11,8 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($result && mysqli_num_rows($result) > 0) {
         $_SESSION['user_role'] = $access_type; // or 'salesman'
+        $_SESSION['logged_in'] = true;
         header("Location: dashboard.php");
-                exit();
+        exit();
     } else {
         // Authentication failed
         echo "Invalid username or password.";
