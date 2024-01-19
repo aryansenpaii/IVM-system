@@ -28,7 +28,7 @@
                 <nav>
                     <ul>
                         <li><a href="dashboard.php" class="logo">
-                            <img src="/logo.jpg" alt="">
+                            <img src="https://thumbs.dreamstime.com/b/mart-logo-letter-m-concept-213107037.jpg" alt="">
                             <span class="nav-item">DashBoard</span>
                         </a>
                         </li>
@@ -81,34 +81,97 @@
                         </a></li>
                     </ul>
                 </nav>
-
+                
+                <?php 
+                    include("db_connection.php");
+                    include("auth.php");
+                    
+                    // Assume you have a table named 'employee_login' with a column 'name'
+                    $sql = "SELECT name FROM employee_login WHERE username='$username'"; 
+                    $result = mysqli_query($conn, $sql);
+   
+                    // Check if the query was successful
+                    if (isset($row['name'])) {
+                        $userName = $row['name'];
+                    } else {
+                        $userName = "Guest";
+                    }
+                ?>
                 <section class="main">
                     <div class="main-top">
-                        <h1>Add Product</h1>
+                        <h1>Biling</h1>
                         <i class="fas fa-user-cog"></i>
+                        <?php echo $userName; ?>
                     </div>
-                    <div class="main-skills">
-                    <div class="card">
 
-
-                    <form action="scanBill.php" method="post">
-                        <label for="product_id">Product ID:</label>
-                        <input type="text" name="product_id" id="product_id" placeholder="Product ID">
-
-                        <label for="product_name">Product Name:</label>
-                        <input type="text" name="product_name" id="product_name" placeholder="Product Name">
-
-                        <label for="rate">Rate:</label>
-                        <input type="text" name="rate" id="rate" placeholder="rate">
-
-                        <label for="quantity">Quantity:</label>
-                        <input type="text" name="quantity" id="quantity" placeholder="quantity">
-
-                        <label for="price">Price:</label>
-                        <input type="number" name="price" id="price" placeholder="Price">
-
-                        <button type="submit">Add item</button>
+                    
+                    <form class="form-horizontal00 billingForm" action="#" method="POST" name="billingForm" id="dd" autocomplete="off" onkeydown="return event.key != 'Enter';">
+				        <input type="hidden" id="invoice_id" name="invoice_id" value="<?php echo $invoice_id;?>" />
+				
+				        <table>
+					        <thead>
+						        <th>Barcode</th>
+						        <th>Name</th>
+						        <th>MRP</th>
+						        <th>Quantity</th>
+						        <th>Available Quantity</th>
+						        <th>Sale Price</th>
+					        </thead>
+					        <tbody>
+					            <tr id="1">
+						            <td>
+							            <input type="text" id="bar_code_1" class="form-control" onchange="get_detail(this.value,1)" name="bar_code[]" />
+						            </td>
+					                <td>
+						                <select name="name[]" id="name_1" class="form-control" onchange="get_detail_name(this.value,1)">
+							                <option value="">Choose Product</option>
+							                <?php $sqlP = $conn->query("SELECT * FROM product WHERE status = 1 ORDER BY name ASC");
+							                    while($rowP = $sqlP->fetch_array()){?>
+							                    <option value="<?php echo $rowP['name']?>"><?php echo $rowP['name'];?></option>
+							                    <?php }
+                                            ?>
+						                </select>
+					                </td>
+					                <td>
+						                <input type="text" class="form-control" readonly id="mrp_1" name="mrp[]" />
+					                </td>
+					                <td>	
+						                <input type="number" class="form-control" onkeyup="calculate_price(this.value,1)" step="0.001" id="quantity_1" name="quantity[]" />
+					                </td>
+					                <td>
+						                <input type="text" readonly class="form-control" id="av_quantity_1" name="av_quantity[]" />
+					                </td>
+					                <td>
+						                <input type="number" class="form-control" onkeyup="get_quantity(this.value,1)" step="0.01" id="sale_price_1" name="sale_price[]" />
+						                <input type="hidden" class="form-control" id="sale_price_org_1" name="sale_price_org[]" />
+					                </td>
+				                </tr>
+				            </tbody>
+				            <tfoot id="foot" style="margin-top:20px;">
+					            <tr>
+						            <td class="text-right"><b>Paid By : </b></td>
+						            <td > 
+							            <select name="payment_method" class="form-control" id="payment_method">
+								            <option value='cash'>Cash</option>
+								            <option value='card'>Card</option>
+								            <option value='paytm'>Paytm</option>
+								            <option value='phone_pay'>Phone Pay</option>
+								            <option value='google_pay'>Google Pay</option>
+								            <option value='upi'>UPI</option>
+								            <option value='udhar'>UDHAR</option>
+								            <option value='other'>Other</option>
+							            </select>
+						            </td>
+						            <td   colspan="3" class='text-right'><b>Total : </b></td>
+						            <td><input type="number" class="form-control" readonly name="total" value="0" id="getTotal" /></td>
+					            </tr>
+				            </tfoot>
+				        </table>
+                        <div class="text-right">
+                            <button type="submit" name="add_user" class="btn btn-primary" id="validateButton2">Submit</button>
+                        </div>
                     </form>
+
                     <?php 
                         include('db_connection.php');
            

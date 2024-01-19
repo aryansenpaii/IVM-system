@@ -84,7 +84,7 @@ a:hover{
   position: absolute;
   right: 0;
   margin: 10px 30px;
-  color: rgb(110, 109, 109);
+  color: rgb(242, 32, 32);
   cursor: pointer;
 }
 .main-skills{
@@ -96,12 +96,12 @@ a:hover{
   width:auto;
   margin: 36px;
   /* margin-bottom: 50px; */
-  background: #fff;
+  background: #eccaca;
   text-align: center;
   border-radius: 20px;
   padding: 15px;
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-  height: 46%;
+  height: 30%;
   overflow:auto
 }
 .main-skills .card h3{
@@ -109,7 +109,7 @@ a:hover{
   text-transform: capitalize;
 }
 .main-skills .card p{
-  font-size: 12px;
+  font-size: 8px;
 }
 .main-skills .card button{
   background: orangered;
@@ -200,6 +200,34 @@ a:hover{
     margin:auto;
 }
 #welcomeText{
-    font-size: 90px;
+    font-size: 60px;
     align-self: center;
+}
+
+form {
+  display: grid;
+  gap: 10px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
 }
