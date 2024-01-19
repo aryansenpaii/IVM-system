@@ -62,7 +62,7 @@ $userRole = $_SESSION['user_role'];
             <nav>
                 <ul>
                     <li><a href="dashboard.php" class="logo">
-                            <img src="/logo.jpg" alt="">
+                            <img src="https://www.shutterstock.com/image-vector/shopping-bag-logo-260nw-786121486.jpg" alt="">
                             <span class="nav-item">DashBoard</span>
                         </a></li>
                     <li><a href="dashboard.php">
