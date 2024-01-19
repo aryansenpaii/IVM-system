@@ -19,43 +19,19 @@ $userRole = $_SESSION['user_role'];
         <title>Dashboard | By Code Info</title>
         <!-- <link rel="stylesheet" href="styles.css" /> -->
         <!-- Font Awesome Cdn Link -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-        <link rel="stylesheet" type="text/css" href="styles.css">
         <style>
-            table {
-                border-collapse: collapse;
-                width: 80%;
-                margin: 20px auto;
-            }
-
-            th,
-            td {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-            }
-
-            th {
-                background-color: #f2f2f2;
-            }
-
-            .edit-btn {
-                background-color: #4caf50;
-                color: white;
-                padding: 6px 12px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                border-radius: 4px;
-                cursor: pointer;
+            .discount-form {
+                display: none;
             }
         </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+        <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
 
     <body>
-
-
-
+        <?php
+        include('discountFunc.php');
+        ?>
 
         <div class="container">
             <nav>
@@ -110,17 +86,66 @@ $userRole = $_SESSION['user_role'];
 
             <section class="main">
                 <div class="main-top">
-                    <h1>Manage</h1>
+                    <h1>Discounts</h1>
                     <i class="fas fa-user-cog"></i>
                 </div>
                 <div class="main-skills">
                     <div class="card">
+                        <form action="discounts.php" method="post" id="occasionalDiscountForm" class="discount-form">
+                            <label for="occasionName">Occasion Name:</label>
+                            <input type="text" name="occasionName" required>
 
+                            <label for="occasionalDiscount">Discount Percentage:</label>
+                            <input type="number" name="occasionalDiscount" min="1" max="100" required>
 
+                            <label for="occasionalCategory">Select Category:</label>
+                            <select name="occasionalCategory" required>
+                                <?php
+                                foreach ($categories as $category) {
+                                    echo "<option value='$category'>$category</option>";
+                                }
+                                ?>
+                            </select>
+                            <label for="occasionDate">Occasion Date:</label>
+                            <input type="date" name="occasionDate" required>
 
+                            <button type="submit">Apply Occasional Discount</button>
+                        </form>
+
+                        <form action="discounts.php" method="post" id="normalDiscountForm" class="discount-form">
+                            <label for="normalDiscount">Normal Discount:</label>
+                            <input type="number" name="normalDiscount" min="1" max="100" required>
+                            <label for="normalCategory">Select Category:</label>
+                            <select name="normalCategory" required>
+                                <?php
+                                global $categories;
+                                foreach ($categories as $category) {
+                                    echo "<option value='$category'>$category</option>";
+                                }
+                                ?>
+                            </select>
+                            <button type="submit">Apply Normal Discount</button>
+                        </form>
+
+                        <script>
+                            function showForm(selectedFormId) {
+                                // Hide all forms
+                                document.querySelectorAll('.discount-form').forEach(form => form.style.display = 'none');
+
+                                // Show the selected form
+                                document.getElementById(selectedFormId).style.display = 'block';
+                            }
+                        </script>
+                        <br>
+                        <br><br><br>
+                        <p>Select a discount type:</p>
+                        <button type="button" onclick="showForm('occasionalDiscountForm')">Occasional Discount</button>
+
+                        <button type="button" onclick="showForm('normalDiscountForm')">Normal Discount</button>
+                        <br><br><br><br><br>
                         <?php
                         include('db_connection.php');
-                        $sql = "SELECT id, product_name, category, price, manufacturer, quantity, expiry FROM products";
+                        $sql = "SELECT id, discount_type, occasion_name, discount_percentage, discount_expiry,discount_category,original_price FROM discounts";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
@@ -128,12 +153,12 @@ $userRole = $_SESSION['user_role'];
                             echo "<table>
                 <tr>
                     <th>ID</th>
-                    <th>Product Name</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                    <th>Manufacturer</th>
-                    <th>Quantity</th>
-                    <th>Expiry</th>
+                    <th>Discount Type</th>
+                    <th>Occasion Name</th>
+                    <th>Discount Percentage</th>
+                    <th>Discount Expiry</th> 
+                    <th>Discount Category</th> 
+                    <th>Original Price</th> 
                     <th>Edit</th>
                 </tr>";
 
@@ -141,13 +166,14 @@ $userRole = $_SESSION['user_role'];
                             while ($row = $result->fetch_assoc()) {
                                 echo "<tr>
                     <td>" . $row["id"] . "</td>
-                    <td>" . $row["product_name"] . "</td>
-                    <td>" . $row["category"] . "</td>
-                    <td>" . $row["price"] . "</td>
-                    <td>" . $row["manufacturer"] . "</td>
-                    <td>" . $row["quantity"] . "</td>
-                    <td>" . $row["expiry"] . "</td>
-                    <td><a href='editProduct.php?id=" . $row["id"] . "' class='edit-btn'>Edit</a></td>
+                    <td>" . $row["discount_type"] . "</td>
+                    <td>" . $row["occasion_name"] . "</td>
+                    <td>" . $row["discount_percentage"] . "</td>
+                    <td>" . $row["discount_expiry"] . "</td>
+                    <td>" . $row["discount_category"] . "</td>
+                    <td>" . $row["original_price"] . "</td>
+
+                    <td><a href='revertDiscount.php?id=" . $row["id"] . "' class='edit-btn'>Remove</a></td>
                 </tr>";
                             }
 
@@ -160,8 +186,8 @@ $userRole = $_SESSION['user_role'];
                         $conn->close();
                         ?>
 
-
                     </div>
+
 
                 </div>
             </section>
