@@ -26,6 +26,37 @@ $userRole = $_SESSION['user_role'];
         </style>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
         <link rel="stylesheet" type="text/css" href="styles.css">
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 80%;
+                margin: 20px auto;
+            }
+
+            th,
+            td {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+            .edit-btn {
+                background-color: #2d22c7;
+                color: white;
+                padding: 6px 12px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+        </style>
+
+
     </head>
 
     <body>
@@ -138,10 +169,14 @@ $userRole = $_SESSION['user_role'];
                         </script>
                         <br>
                         <br><br><br>
-                        <p>Select a discount type:</p>
-                        <button type="button" onclick="showForm('occasionalDiscountForm')">Occasional Discount</button>
+                        <div id="discountSelect">
+                            <p>Select a discount type:</p>
+                            <button type="button" onclick="showForm('occasionalDiscountForm')">Occasional
+                                Discount</button>
 
-                        <button type="button" onclick="showForm('normalDiscountForm')">Normal Discount</button>
+                            <button type="button" onclick="showForm('normalDiscountForm')">Normal Discount</button>
+                        </div>
+
                         <br><br><br><br><br>
                         <?php
                         include('db_connection.php');
