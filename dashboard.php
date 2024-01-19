@@ -16,7 +16,7 @@ $userRole = $_SESSION['user_role'];
 
     <head>
         <meta charset="UTF-8" />
-        <title>Dashboard | By Code Info</title>
+        <title>Dashboard | GEU Mart</title>
         <!-- <link rel="stylesheet" href="styles.css" /> -->
         <!-- Font Awesome Cdn Link -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
@@ -28,7 +28,7 @@ $userRole = $_SESSION['user_role'];
             <nav>
                 <ul>
                     <li><a href="dashboard.php" class="logo">
-                            <img src="/logo.jpg" alt="">
+                            <img src="https://thumbs.dreamstime.com/b/mart-logo-letter-m-concept-213107037.jpg" alt="">
                             <span class="nav-item">DashBoard</span>
                         </a></li>
                     <li><a href="dashboard.php">
@@ -77,7 +77,7 @@ $userRole = $_SESSION['user_role'];
 
             <section class="main">
                 <div class="main-top">
-                    <h1>Skills</h1>
+                    <h1>GEU Mart</h1>
                     <i class="fas fa-user-cog"></i>
                 </div>
                 <div class="main-skills">

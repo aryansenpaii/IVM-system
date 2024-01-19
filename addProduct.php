@@ -24,15 +24,11 @@ $userRole = $_SESSION['user_role'];
     </head>
 
     <body>
-
-
-
-    
         <div class="container">
             <nav>
                 <ul>
                     <li><a href="dashboard.php" class="logo">
-                            <img src="/logo.jpg" alt="">
+                            <img src="https://thumbs.dreamstime.com/b/mart-logo-letter-m-concept-213107037.jpg" alt="">
                             <span class="nav-item">DashBoard</span>
                         </a></li>
                     <li><a href="dashboard.php">
